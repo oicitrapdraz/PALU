@@ -5,30 +5,28 @@
 #include "matrix.h"
 
 int main(int argc, char *argv[]) {
-	int i = 0, j = 0, k = 0, acumulator = 0;
-
 	if ((argc > 2) || (argc < 2))
 		return 0;
 
 	srand(time(NULL));
 
-	int n = atoi(argv[1]);
+	int i = 0, j = 0, k = 0, acumulator = 0, n = atoi(argv[1]);
 
-	int **a = NULL;
-	int **b = NULL;
-	int **c = NULL;
+	double **a = NULL;
+	double **b = NULL;
+	double **c = NULL;
 
-	a = matrix_define(n, true);
-	b = matrix_define(n, true);
-	c = matrix_define(n, false);
+	a = matrix_random_define(n);
+	b = matrix_random_define(n);
+	c = matrix_zero_define(n);
 
 	printf("\nMatriz A:\n\n");
 	matrix_show(a, n);
 
-	printf("\nMatriz B:\n\n");
+	printf("Matriz B:\n\n");
 	matrix_show(b, n);
 
-	matrix_mult(a, b, c, n);
+	matrix_dot(a, b, c, n);
 
 	printf("Resultado:\n\n");
 	matrix_show(c, n);
