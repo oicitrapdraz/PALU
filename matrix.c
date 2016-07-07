@@ -37,7 +37,7 @@ double** matrix_random_define(int dim) {
 
 	for (i = 0; i < dim; i++) {
 		for (j = 0; j < dim; j++)
-			m[i][j] = rand() % 10;
+			m[i][j] = 1 + rand() % 9;
 	}
 
 	return m;
@@ -54,7 +54,7 @@ void matrix_show(double **m, int dim) {
 
 	for (i = 0; i < dim; i++) {
 		for (j = 0; j < dim; j++)
-			printf("\t%.2f", m[i][j]);
+			printf("\t%.1f", m[i][j]);
 		printf("\n\n");
 	}
 }
@@ -108,10 +108,10 @@ double** matrix_p(double **a, int col, int dim) {
 	}
 
 	int i, max_index = col;
-	double max_pivot = a[col][col], *tmp, **perm = matrix_identity_define(dim);
+	double max_pivot = abs(a[col][col]), *tmp, **perm = matrix_identity_define(dim);
 
 	for (i = col + 1; i < dim; i++)
-		if (max_pivot < a[i][col]) {
+		if (max_pivot < abs(a[i][col])) {
 			max_pivot = a[i][col];
 			max_index = i;
 		}
@@ -190,4 +190,76 @@ bool matrix_p_needed(double **a, int col, int dim) {
 		return false;
 	else
 		return true;
+}
+
+void matrix_copy(double **a, double **b, int dim) {
+	if (!a || !b) {
+		printf("\n\nError: Matriz nula\n\n");
+
+		return ;
+	}
+
+	int i, j;
+
+	for (i = 0; i < dim; i++)
+		for (j = 0; j < dim; j++)
+			b[i][j] = a[i][j];
+}
+
+void matrix_palu_show(double **p, double **a, double **l, double **u, int dim) {
+	if (!p || !a || !l || !u) {
+		printf("\n\nError: Matriz nula\n\n");
+
+		return ;
+	}
+
+	int i, j;
+
+	for (i = 0; i < dim; i++) {
+		for (j = 0; j < dim; j++)
+			printf("\t | %.1f", p[i][j]);
+
+		printf(" | ");
+
+		for (j = 0; j < dim; j++)
+			printf("\t | %.1f", a[i][j]);
+
+		printf(" |\t= ");
+
+		for (j = 0; j < dim; j++)
+			printf("\t | %.1f", l[i][j]);
+
+		printf(" | ");
+
+		for (j = 0; j < dim; j++)
+			printf("\t | %.1f", u[i][j]);
+
+		printf(" | ");
+
+		printf("\n\n");
+	}
+}
+
+void matrix_permute_l(double **p, double **l, int dim) {
+	if (!p || !l) {
+		printf("\n\nError: Matriz nula\n\n");
+
+		return ;
+	}
+
+	int i;
+
+	for (i = 0; i < dim; i++)
+		l[i][i] = 0;
+
+	double **res = matrix_zero_define(dim);
+
+	matrix_dot(p, l, res, dim);
+
+	matrix_copy(res, l, dim);
+
+	for (i = 0; i < dim; i++)
+		l[i][i] = 1;
+
+	matrix_delete(res, dim);
 }

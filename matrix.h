@@ -35,4 +35,13 @@ void matrix_row_operation(double **a, int col, int dim);
 // Verifica si es necesario hacer alguna permutacion
 bool matrix_p_needed(double **a, int col, int dim);
 
+// Copia a en b
+void matrix_copy(double **a, double **b, int dim);
+
+// Muestra la descomposicion PALU
+void matrix_palu_show(double **p, double **a, double **l, double **u, int dim);
+
+// Permuta la matriz l (solo las entradas debajo de la diagonal) en caso de haber una permutacion
+void matrix_permute_l(double **p, double **l, int dim);
+
 #endif
