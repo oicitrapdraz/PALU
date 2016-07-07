@@ -4,13 +4,8 @@
 
 #include "matrix.h"
 
-int main(int argc, char *argv[]) {
-	if ((argc > 2) || (argc < 2))
-		return 0;
-
-	srand(time(NULL));
-
-	int i = 0, j = 0, k = 0, acumulator = 0, n = atoi(argv[1]);
+void palu(int n) {
+	int i = 0, j = 0, k = 0, acumulator = 0;
 
 	double **a = NULL;
 	double **u = NULL;
@@ -73,15 +68,24 @@ int main(int argc, char *argv[]) {
 
 		l_tmp = matrix_delete(l_tmp, n);
 		l_res = matrix_delete(l_res, n);
-
-		printf("Iteracion %d:\n\n", i + 1);
-		matrix_palu_show(p, a, l, u, n);
 	}
 
 	a = matrix_delete(a, n);
 	u = matrix_delete(u, n);
 	p = matrix_delete(p, n);
 	l = matrix_delete(l, n);
+}
+
+int main(int argc, char *argv[]) {
+	if ((argc > 3) || (argc < 3))
+		return 0;
+
+	srand(time(NULL));
+
+	int i, dim = atoi(argv[1]), times = atoi(argv[2]);
+
+	for (i = 0; i < times; i++)
+		palu(dim);
 
 	return 0;
 }
