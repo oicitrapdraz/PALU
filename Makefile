@@ -1,5 +1,5 @@
 palu: palu.o matrix.o matrix.h
-	gcc -O3 palu.o matrix.o -o palu
+	gcc -O3 -pthread palu.o matrix.o -o palu
 
 palu.o: palu.c matrix.h
 	gcc -c palu.c

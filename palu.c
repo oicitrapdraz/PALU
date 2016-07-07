@@ -1,8 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
+#include <pthread.h>
 #include <time.h>
 
 #include "matrix.h"
+
+int n;
 
 void palu(int n) {
 	int i = 0, j = 0, k = 0, acumulator = 0;
@@ -73,16 +77,35 @@ void palu(int n) {
 	l = matrix_delete(l, n);
 }
 
+void* thread(void *ptr) {
+	int i;
+
+	for (i = 0; i < *(int *)ptr; i++)
+		palu(n);
+}
+
 int main(int argc, char *argv[]) {
-	if ((argc > 3) || (argc < 3))
+	if ((argc > 4) || (argc < 4))
 		return 0;
 
 	srand(time(NULL));
 
-	int i, dim = atoi(argv[1]), times = atoi(argv[2]);
+	int i, times = atoi(argv[2]), threads = atoi(argv[3]), *times_per_thread;
 
-	for (i = 0; i < times; i++)
-		palu(dim);
+	pthread_t *threads_tab;
+	threads_tab = malloc(threads * sizeof(pthread_t));
+
+	n = atoi(argv[1]);
+
+	times_per_thread = malloc(sizeof(int));
+
+	*times_per_thread = times / threads;
+
+	for (i = 0; i < threads; i++)
+		pthread_create(&threads_tab[i], NULL, thread, times_per_thread);
+
+	for(i = 0; i < threads; i++)
+		pthread_join(threads_tab[i], NULL);
 
 	return 0;
 }
