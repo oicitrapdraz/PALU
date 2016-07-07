@@ -26,9 +26,6 @@ void palu(int n) {
 	u = matrix_zero_define(n);
 	matrix_copy(a, u, n);
 
-	printf("Matriz A:\n\n");
-	matrix_show(a, n);
-
 	// Recorremos las columnas de A
 	for (i = 0; i < n - 1; i++) {
 		if (matrix_p_needed(u, i, n)) {
