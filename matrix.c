@@ -61,7 +61,7 @@ void matrix_show(double **m, int dim) {
 
 double** matrix_delete(double **m, int dim) {
 	if (!m) {
-		printf("\n\nError: Matriz nula\n\n");
+		//printf("\n\nError: Matriz nula\n\n");
 
 		return NULL;
 	}
@@ -78,7 +78,7 @@ double** matrix_delete(double **m, int dim) {
 
 void matrix_dot(double **a, double **b, double **res, int dim) {
 	if (!a || !b || !res) {
-		printf("\n\nError: Matriz nula\n\n");
+		//printf("\n\nError: Matriz nula\n\n");
 
 		return ;
 	}
@@ -96,13 +96,13 @@ void matrix_dot(double **a, double **b, double **res, int dim) {
 
 double** matrix_p(double **a, int col, int dim) {
 	if (!a) {
-		printf("\n\nError: Matriz nula\n\n");
+		//printf("\n\nError: Matriz nula\n\n");
 
 		return NULL;
 	}
 
 	if (col > dim - 2) {
-		printf("\n\nError: Evaluando en una columna \"mayor\" o igual a la ultima\n\n");
+		//printf("\n\nError: Evaluando en una columna \"mayor\" o igual a la ultima\n\n");
 
 		return NULL;
 	}
@@ -125,13 +125,13 @@ double** matrix_p(double **a, int col, int dim) {
 
 double** matrix_l(double **a, int col, int dim) {
 	if (col > dim - 2) {
-		printf("\n\nError: Evaluando en una columna \"mayor\" o igual a la ultima\n\n");
+		//printf("\n\nError: Evaluando en una columna \"mayor\" o igual a la ultima\n\n");
 
 		return NULL;
 	}
 
 	if (a[col][col] == 0) {
-		printf("\n\nError: No se puede dividir por 0\n\n");
+		//printf("\n\nError: No se puede dividir por 0\n\n");
 
 		return NULL;
 	}
@@ -147,13 +147,13 @@ double** matrix_l(double **a, int col, int dim) {
 
 void matrix_row_operation(double **a, int col, int dim) {
 	if (col > dim - 2) {
-		printf("\n\nError: Evaluando en una columna \"mayor\" o igual a la ultima\n\n");
+		//printf("\n\nError: Evaluando en una columna \"mayor\" o igual a la ultima\n\n");
 
 		return ;
 	}
 
 	if (a[col][col] == 0) {
-		printf("\n\nError: No se puede dividir por 0\n\n");
+		//printf("\n\nError: No se puede dividir por 0\n\n");
 
 		return ;
 	}
@@ -172,7 +172,7 @@ void matrix_row_operation(double **a, int col, int dim) {
 
 bool matrix_p_needed(double **a, int col, int dim) {
 	if (col > dim - 2) {
-		printf("\n\nError: Evaluando en una columna \"mayor\" o igual a la ultima\n\n");
+		//printf("\n\nError: Evaluando en una columna \"mayor\" o igual a la ultima\n\n");
 
 		return NULL;
 	}
@@ -194,7 +194,7 @@ bool matrix_p_needed(double **a, int col, int dim) {
 
 void matrix_copy(double **a, double **b, int dim) {
 	if (!a || !b) {
-		printf("\n\nError: Matriz nula\n\n");
+		//printf("\n\nError: Matriz nula\n\n");
 
 		return ;
 	}
@@ -208,7 +208,7 @@ void matrix_copy(double **a, double **b, int dim) {
 
 void matrix_palu_show(double **p, double **a, double **l, double **u, int dim) {
 	if (!p || !a || !l || !u) {
-		printf("\n\nError: Matriz nula\n\n");
+		//printf("\n\nError: Matriz nula\n\n");
 
 		return ;
 	}
@@ -242,7 +242,7 @@ void matrix_palu_show(double **p, double **a, double **l, double **u, int dim) {
 
 void matrix_permute_l(double **p, double **l, int dim) {
 	if (!p || !l) {
-		printf("\n\nError: Matriz nula\n\n");
+		//printf("\n\nError: Matriz nula\n\n");
 
 		return ;
 	}
