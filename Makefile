@@ -1,5 +1,5 @@
-palu: palu.o matrix.o matrix.h
-	gcc -O3 -pthread palu.o matrix.o -o palu
+palu_paralelo: palu.o matrix.o matrix.h
+	gcc -O3 -pthread palu.o matrix.o -o palu_paralelo
 
 palu.o: palu.c matrix.h
 	gcc -c palu.c
