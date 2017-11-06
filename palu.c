@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
 
@@ -67,6 +68,18 @@ void palu(int n) {
 		l_res = matrix_delete(l_res, n);
 	}
 
+	printf("Matriz A:\n\n");
+	matrix_show(a, n);
+
+	printf("Matriz U:\n\n");
+	matrix_show(u, n);
+
+	printf("Matriz P:\n\n");
+	matrix_show(p, n);
+
+	printf("Matriz L:\n\n");
+	matrix_show(l, n);
+
 	a = matrix_delete(a, n);
 	u = matrix_delete(u, n);
 	p = matrix_delete(p, n);
@@ -74,15 +87,17 @@ void palu(int n) {
 }
 
 int main(int argc, char *argv[]) {
-	if ((argc > 3) || (argc < 3))
+	if ((argc > 2) || (argc < 2)) {
+		printf("Se necesita un argumento que sera la dimension de la matriz a generar\n");
+
 		return 0;
+	}
 
 	srand(time(NULL));
 
-	int i, dim = atoi(argv[1]), times = atoi(argv[2]);
+	int i, dim = atoi(argv[1]);
 
-	for (i = 0; i < times; i++)
-		palu(dim);
+	palu(dim);
 
 	return 0;
 }
